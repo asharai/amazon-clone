@@ -1,6 +1,7 @@
 import React from 'react'
 import './Product.css'
-import { useStateValue } from './StateProvider'
+import { useStateValue } from './StateProvider';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 function Product({id,title,image,price,rating}) {
     const [{basket},dispatch] = useStateValue();
     const addToBasket = ()=>{
@@ -31,7 +32,7 @@ function Product({id,title,image,price,rating}) {
                 </div>
             </div>
             <img src={image} alt=""/>
-            <button onClick={addToBasket}>Add to Basket</button>
+            <button onClick={addToBasket}><AddShoppingCartIcon style={{backgroundColor:'#333',color:'white'}}/> <span>Add to basket</span></button>
         </div>
     )
 }

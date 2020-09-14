@@ -12,6 +12,7 @@
     z-index: 1;
     
 }
+
 .product > img{
     max-height: 200px;
     width: 100%;
@@ -25,6 +26,19 @@
     margin-top: 10px;
     border-color: #a88734 #9c7e31 #846a29;
     color:#111;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    padding:3px;
+    align-items: center;
+    min-width: 170px;
+    border-radius: 5px;
+    
+    
+}
+.product > button > span{
+   
+    flex-grow: 1;
 }
 .product_price{
     margin-top: 5px;
