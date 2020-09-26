@@ -1,0 +1,31 @@
+.card{
+    width: 100%;
+    display: flex;
+}
+.card__block{
+    width:500px;
+    height: 200px;
+    background-color: lightblue;
+}
+.card__info{
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+
+}
+.card__infoInput{
+border:none;
+    border-bottom: 1px solid orangered;
+    margin-bottom: 10px;
+    outline: none;
+}
+.card__InfoParams{
+    display: flex;
+   text-align: center;
+    justify-content: space-between;
+}
+.card__InfoParams > label{
+      display: flex;
+      flex-direction: column;
+      width: 20%;
+  }

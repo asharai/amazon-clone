@@ -1,5 +1,11 @@
 export const initialState ={
     basket:[],
+    cardInfo:{
+        pan:'',
+        expMonth:'',
+        expYear:'',
+        cvv:''
+    }
 };
 
 export const getBasketTotal = (basket) =>{
@@ -29,6 +35,8 @@ export const reducer = (state,action)=>{
                         ...state,
                         user:action.user
                     }
+        case '':
+            return{}
             default:
                 return state
         }
