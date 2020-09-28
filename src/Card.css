@@ -3,9 +3,15 @@
     display: flex;
 }
 .card__block{
-    width:500px;
-    height: 200px;
-    background-color: lightblue;
+    width:400px;
+    height: 250px;
+    background-color: #f74a4a;
+    border-radius: 10px;
+    padding:20px 3%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    color: white;
 }
 .card__info{
     padding: 0px 20px;
@@ -13,19 +19,47 @@
     flex-direction: column;
 
 }
+.card__info label{
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
 .card__infoInput{
 border:none;
-    border-bottom: 1px solid orangered;
+    border-bottom: 1px solid #f74a4a;
     margin-bottom: 10px;
     outline: none;
 }
-.card__InfoParams{
+.card__InfoParams {
     display: flex;
    text-align: center;
     justify-content: space-between;
+
 }
 .card__InfoParams > label{
       display: flex;
       flex-direction: column;
       width: 20%;
   }
+.card__InfoParams > label > span{
+    font-size: 13px;
+
+}
+
+.card__blockInfo{
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    justify-content: space-between;
+    text-align: center;
+
+}
+
+.card__blockLogo{
+    height: 35%;
+    align-self: flex-end;
+}
+.card__blockPan{
+    font-size: 18px;
+    height: 20%;
+}
