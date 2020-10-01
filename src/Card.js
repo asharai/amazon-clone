@@ -6,13 +6,22 @@ const Card = () => {
     const [month='',setMonth] =useState()
     const [year='',setYear] =useState()
     const [cvv='',setCvv] =useState()
+    let paymentSystem = "Payment System";
+    if(pan){
+        paymentSystem = pan[0]=='4'? 'VISA' : 'Master Card'
+    }
+
 
     return (
         <div className="card">
             <div className="card__block">
-                <div className="card__blockLogo">VISA</div>
+                <div className="card__blockLogo">
+                    {paymentSystem}
+                </div>
 
-                <p className='card__blockPan'>{pan}</p>
+                <p className='card__blockPan'>
+                {pan}
+                </p>
                     <ul className="card__blockInfo">
                         <li>
                             <span> CARD HOLDER</span>
@@ -28,7 +37,7 @@ const Card = () => {
 
                         <li>
                             <span>CVV</span>
-                            <p>{cvv}</p>
+                            <input type="password" value={cvv} className="card__blockCvv"/>
                         </li>
 
                     </ul>
@@ -36,8 +45,8 @@ const Card = () => {
             <form className="card__info">
                 <label htmlFor="">Cardholder Name</label>
                 <input className="card__infoInput" type="text" onChange={(e)=>setCardholder(e.target.value)}/>
-                <label htmlFor="">PAN</label>
-                <input className="card__infoInput" type="text" value={pan} onChange={(e)=>setPan(e.target.value)}/>
+                <label htmlFor="" >PAN</label>
+                <input className="card__infoInput" type="text"  value={pan} onChange={(e)=>setPan(e.target.value)}/>
                 <div className="card__InfoParams">
                     <label htmlFor="">
                     <span>Exp Month</span>
@@ -45,11 +54,11 @@ const Card = () => {
                     </label>
                     <label htmlFor="">
                         <span>Exp Year</span>
-                    <input className="card__infoInput" type="text" onChange={(e)=>setYear(e.target.value)}/>
+                    <input className="card__infoInput" maxLength={2} type="text" onChange={(e)=>setYear(e.target.value)}/>
                     </label>
                     <label htmlFor="">
                         <span>CVV</span>
-                    <input className="card__infoInput" type="text" onChange={(e)=>setCvv(e.target.value)}/></label>
+                    <input className="card__infoInput" maxLength={3} type="text" onChange={(e)=>setCvv(e.target.value)}/></label>
                 </div>
             </form>
 
