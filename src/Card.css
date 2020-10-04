@@ -47,7 +47,7 @@ border:none;
 }
 
 .card__blockInfo{
-    width: 70%;
+    width: 80%;
     display: flex;
     flex-direction: row;
     list-style: none;
@@ -56,21 +56,23 @@ border:none;
     padding-left: 0;
 
 }
+.card__blockInfo > li{
+    flex:1 1;
+}
+.card__blockInfo > li> span{
+    font-size: 11px;
 
+}
+.card__blockInfo > li> p{
+    font-size: 14px;
+}
 .card__blockLogo{
     height: 35%;
     align-self: flex-end;
 }
 .card__blockPan{
-    font-size: 20px;
+    font-size: 22px;
     height: 20%;
     text-align: left;
-}
-.card__blockCvv{
-    outline: none;
-    border:none;
-    width:30px;
-    background-color: transparent;
-    display: block;
-    color: white;
+
 }

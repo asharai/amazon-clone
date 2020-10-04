@@ -10,7 +10,19 @@ const Card = () => {
     if(pan){
         paymentSystem = pan[0]=='4'? 'VISA' : 'Master Card'
     }
-
+    const onChangePan = (pan)=>{
+        let str = pan.split('');
+        if(pan.length>=12){
+            str[11]= str[11]+' '
+        }
+         if(pan.length>=8){
+             str[7]= str[7]+' '
+        }
+         if(pan.length>=4){
+                str[3]= str[3]+' '
+            }
+            return str
+            }
 
     return (
         <div className="card">
@@ -20,7 +32,7 @@ const Card = () => {
                 </div>
 
                 <p className='card__blockPan'>
-                {pan}
+                {onChangePan(pan)}
                 </p>
                     <ul className="card__blockInfo">
                         <li>
@@ -37,16 +49,17 @@ const Card = () => {
 
                         <li>
                             <span>CVV</span>
-                            <input type="password" value={cvv} className="card__blockCvv"/>
+
+                            <p>{cvv} </p>
                         </li>
 
                     </ul>
             </div>
             <form className="card__info">
                 <label htmlFor="">Cardholder Name</label>
-                <input className="card__infoInput" type="text" onChange={(e)=>setCardholder(e.target.value)}/>
+                <input className="card__infoInput"  type="text" onChange={(e)=>setCardholder(e.target.value.toUpperCase())}/>
                 <label htmlFor="" >PAN</label>
-                <input className="card__infoInput" type="text"  value={pan} onChange={(e)=>setPan(e.target.value)}/>
+                <input className="card__infoInput" type="text" maxLength={16} value={pan} onChange={(e)=>setPan(e.target.value)}/>
                 <div className="card__InfoParams">
                     <label htmlFor="">
                     <span>Exp Month</span>
