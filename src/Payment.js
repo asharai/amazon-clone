@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 import Card from "./Card";
 function Payment() {
     const [{basket,user},dispatch]=useStateValue();
+    const subtotal = basket.reduce((acc,cur)=>acc+cur.price,0);
     return (
         <div className='payment'>
             <div className='payment__container'>
@@ -25,7 +26,7 @@ function Payment() {
 
                 <div className="payment__section">
                 <div className="payment__title">
-                    <h3>Review items and delivery</h3>
+                    <h3>Review items </h3>
                 </div>
                 <div className="payment__items">
                     {basket.map(item=>{
@@ -42,12 +43,14 @@ function Payment() {
                 <div className="payment__section">
                     <div className="payment__title">
                         <h3>Payment Method</h3>
-
                     </div>
                     <div className="payment__details">
                         <Card/>
+
                     </div>
-                </div> 
+
+                </div>
+
             </div>
 
         </div>

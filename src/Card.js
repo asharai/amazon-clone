@@ -1,14 +1,17 @@
 import React, {useState} from 'react';
 import './Card.css'
+import {useStateValue} from "./StateProvider";
 const Card = () => {
-    const [pan='',setPan] =useState()
-    const [cardholder='',setCardholder] =useState()
-    const [month='',setMonth] =useState()
-    const [year='',setYear] =useState()
-    const [cvv='',setCvv] =useState()
+    const [pan='',setPan] =useState();
+    const [cardholder='',setCardholder] =useState();
+    const [month='',setMonth] =useState();
+    const [year='',setYear] =useState();
+    const [cvv='',setCvv] =useState();
+    const [{basket,user},dispatch]=useStateValue();
+    const subtotal = basket.reduce((acc,cur)=>acc+cur.price,0);
     let paymentSystem = "Payment System";
     if(pan){
-        paymentSystem = pan[0]=='4'? 'VISA' : 'Master Card'
+        paymentSystem = pan[0]=='4'? <i className="card__blockLogoIcon fab fa-cc-visa"></i> : <i className="card__blockLogoIcon fab fa-cc-mastercard"></i>
     }
     const onChangePan = (pan)=>{
         let str = pan.split('');
@@ -31,6 +34,10 @@ const Card = () => {
                     {paymentSystem}
                 </div>
 
+                    <div className="card__blockChip"
+                      >
+                    </div>
+
                 <p className='card__blockPan'>
                 {onChangePan(pan)}
                 </p>
@@ -50,7 +57,7 @@ const Card = () => {
                         <li>
                             <span>CVV</span>
 
-                            <p>{cvv} </p>
+                            <p>{cvv}</p>
                         </li>
 
                     </ul>
@@ -72,6 +79,10 @@ const Card = () => {
                     <label htmlFor="">
                         <span>CVV</span>
                     <input className="card__infoInput" maxLength={3} type="text" onChange={(e)=>setCvv(e.target.value)}/></label>
+                </div>
+                <div className="card__pay">
+                    <p>Payment Amount: <span> {subtotal}$</span></p>
+                    <a href="#" >PAY</a>
                 </div>
             </form>
 
