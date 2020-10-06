@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './Card.css'
 import {useStateValue} from "./StateProvider";
+import axios from './axios-orders';
 const Card = () => {
     const [pan='',setPan] =useState();
     const [cardholder='',setCardholder] =useState();
@@ -26,7 +27,13 @@ const Card = () => {
             }
             return str
             }
-
+        const makeOrder = ()=>{
+        axios.post('/orders.json',{
+          items:basket,
+            fullPrice:subtotal
+        }).then((res)=>console.log(res))
+            .catch((err)=>console.log(err))
+        }
     return (
         <div className="card">
             <div className="card__block">
@@ -82,7 +89,7 @@ const Card = () => {
                 </div>
                 <div className="card__pay">
                     <p>Payment Amount: <span> {subtotal}$</span></p>
-                    <a href="#" >PAY</a>
+                    <a href="#" onClick={makeOrder}>PAY</a>
                 </div>
             </form>
 

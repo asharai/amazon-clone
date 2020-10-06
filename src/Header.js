@@ -33,6 +33,7 @@ import { auth } from './firebase';
                      </span>
                  </div>
                  </Link>
+                <Link to="/orders">
                  <div className="header__option">
                  <span className="header__optionLineOne">
                     Returns
@@ -41,7 +42,7 @@ import { auth } from './firebase';
                      & Orders
                      </span>
                  </div>
-
+                </Link>
                  <Link to="/checkout">
                  <div className="header__optionBasket">                     
                      <ShoppingBasketIcon/>
