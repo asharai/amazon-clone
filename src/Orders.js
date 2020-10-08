@@ -1,28 +1,33 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from './axios-orders'
-import CheckoutProduct from "./CheckoutProduct";
+import Product from "./Product";
+import './Orders.css';
 const Orders = () => {
     const [orders=[],setOrders]= useState();
-    const order = axios.get('/orders.json').then(res=>{
-      const  fetchedOrders = [];
-      for(let key in res.data){
-          fetchedOrders.push({...res.data[key],id:key})
-      }
-        setOrders(fetchedOrders);
+    useEffect(()=>{
+        axios.get('/orders.json').then(res=>{
+            const  fetchedOrders = [];
+            for(let key in res.data){
+                fetchedOrders.push({...res.data[key],id:key})
+            }
+            setOrders(fetchedOrders);
         }).catch(err=>console.log(err))
+    },[])
 
     return (
-        <div>
+        <div className="orders">
             <h1>Your Orders</h1>
-            <div className="orders__items">
+            <div >
                 {orders.map(prop=>{
+
                     return(
-                        <div>
-                            <h2>Price:{prop.fullPrice}</h2>
-                            <ul>
+                        <div className="orders__items">
+                            <span>Order: <h3> {prop.id}</h3></span>
+
+                            <ul >
                                 {prop.items.map(product=>{
                                     return(
-                                        <CheckoutProduct
+                                        <Product
                                             id={product.id}
                                             title={product.title}
                                             image={product.image}
@@ -32,6 +37,7 @@ const Orders = () => {
                                     )
                                 })}
                             </ul>
+                            <span>Full Price: <h3> ${prop.fullPrice}</h3></span>
                         </div>
                     )
                 })}
