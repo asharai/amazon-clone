@@ -1,10 +1,10 @@
 import React,{forwardRef} from 'react'
  import './Checkout.css';
-import CheckoutProduct from './CheckoutProduct';
- import { useStateValue } from './StateProvider';
+import CheckoutProduct from './CheckoutProduct/CheckoutProduct';
+ import { useStateValue } from '../StateProvider';
  import FlipMove from 'react-flip-move';
 
-import Subtotal from './Subtotal'
+import Subtotal from './Subtotal/Subtotal'
 function Checkout() {
     const [{basket,user},dispatch] = useStateValue();  
 

@@ -1,9 +1,9 @@
 import React from 'react'
-import CheckoutProduct from './CheckoutProduct';
+import CheckoutProduct from '../Checkout/CheckoutProduct/CheckoutProduct';
 import './Payment.css'
-import { useStateValue } from './StateProvider'
+import { useStateValue } from '../StateProvider'
 import {Link} from 'react-router-dom'
-import Card from "./Card";
+import Card from "./Card/Card";
 function Payment() {
     const [{basket,user},dispatch]=useStateValue();
     const subtotal = basket.reduce((acc,cur)=>acc+cur.price,0);

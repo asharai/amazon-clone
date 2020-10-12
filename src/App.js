@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
 import './App.css';
-import Header from './Header';
-import Home from './Home';
-import Checkout from './Checkout';
+import Header from './Header/Header';
+import Home from './Home/Home';
+import Checkout from './Checkout/Checkout';
 import Login from './Login';
 import { auth } from './firebase';
 import { useStateValue } from './StateProvider';
-import Payment from './Payment';
+import Payment from './Payment/Payment';
 import Orders from "./Orders";
+import FullProduct from "./Product/FullProduct/FullProduct";
 function App() {
   const [state,dispatch]=useStateValue();
   useEffect(()=>{
@@ -40,6 +41,10 @@ function App() {
      <Header/>    
     <Checkout/>
    </Route>
+       <Route path="/fullProduct">
+         <Header/>
+         <FullProduct/>
+       </Route>
        <Route path="/orders">
          <Header/>
          <Orders/>

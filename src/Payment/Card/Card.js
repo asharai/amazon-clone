@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './Card.css'
-import {useStateValue} from "./StateProvider";
-import axios from './axios-orders';
+import {useStateValue} from "../../StateProvider";
+import axios from '../../axios-orders';
 const Card = () => {
     const [pan='',setPan] =useState();
     const [cardholder='',setCardholder] =useState();

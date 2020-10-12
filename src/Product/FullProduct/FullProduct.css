@@ -1,0 +1,11 @@
+.fullProduct{
+    display: flex;
+    justify-content: space-between;
+    padding:20px 10%;
+}
+.fullProduct__info{
+    flex:0.6;
+}
+.fullProduct__purchase,.fullProduct__images{
+    flex:0.2;
+}
