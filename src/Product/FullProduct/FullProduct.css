@@ -1,11 +1,28 @@
 .fullProduct{
     display: flex;
     justify-content: space-between;
-    padding:20px 10%;
+    padding:20px 5%;
 }
 .fullProduct__info{
     flex:0.6;
 }
+.fullProduct__images{
+    display: flex;
+    margin-right: 20px;
+    justify-content: space-between;
+}
 .fullProduct__purchase,.fullProduct__images{
     flex:0.2;
+}
+.fullProduct__images > ul > li > img{
+    height: 90px;
+    width: 80px;
+}
+.fullProduct__images > ul{
+    list-style: none;
+    margin-right: 20px;
+}
+.fullProduct__mainImage{
+    width:300px;
+    height:400px;
 }

@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import "./Home.css";
 import Product from "../Product/Product";
-import axios from '../axios-orders'
+import axios from '../axios-orders';
+import {Link} from 'react-router-dom'
 const  Home=()=> {
 
   const [products=[],setProducts]= useState();
@@ -20,6 +21,7 @@ const  Home=()=> {
    return(
        products.slice(a,b).map(item=>{
          return(
+
              <Product
                  id={item.id}
                  title={item.title}
@@ -27,6 +29,7 @@ const  Home=()=> {
                  rating={item.rating}
                  image={item.image}
              />
+
          )
        })
    )

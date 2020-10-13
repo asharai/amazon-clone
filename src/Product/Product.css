@@ -13,7 +13,7 @@
     
 }
 
-.product > img{
+.product__img{
     max-height: 200px;
     width: 100%;
     object-fit: contain;
@@ -33,11 +33,11 @@
     align-items: center;
     min-width: 170px;
     border-radius: 5px;
-    
-    
+
+
 }
 .product > button > span{
-   
+
     flex-grow: 1;
 }
 .product_price{
