@@ -3,6 +3,7 @@ import "./Home.css";
 import Product from "../Product/Product";
 import axios from '../axios-orders';
 import {Link} from 'react-router-dom'
+
 const  Home=()=> {
 
   const [products=[],setProducts]= useState();
@@ -17,11 +18,11 @@ const  Home=()=> {
           setProducts(fetchedProducts);
         }).catch(err=>console.log(err))
   },[])
+
  const productInRow=((a,b)=>{
    return(
        products.slice(a,b).map(item=>{
          return(
-
              <Product
                  id={item.id}
                  title={item.title}

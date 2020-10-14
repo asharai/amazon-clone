@@ -1,22 +1,11 @@
 import React from 'react'
 import './Product.css'
 import { useStateValue } from '../StateProvider';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+
 import {Link, NavLink} from "react-router-dom";
+
 function Product({id,title,image,price,rating}) {
     const [{basket},dispatch] = useStateValue();
-    const addToBasket = ()=>{
-        dispatch ({
-            type:'ADD_TO_BASKET',
-            item:{
-                id:id,
-                title:title,
-                image:image,
-                price:price,
-                rating:rating
-            }
-        })
-    }
     return (
         <div className="product">
             <NavLink to={`fullProduct/${id}`} style={{
@@ -37,7 +26,7 @@ function Product({id,title,image,price,rating}) {
                 </div>
             </div>
             <img src={image} alt="" className="product__img"/>
-            {/*<button onClick={addToBasket}><AddShoppingCartIcon style={{backgroundColor:'#333',color:'white'}}/> <span>Add to basket</span></button>*/}
+
             </NavLink>
         </div>
     )

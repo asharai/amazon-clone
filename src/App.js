@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
+
+
 import './App.css';
 import Header from './Header/Header';
 import Home from './Home/Home';
@@ -12,6 +14,15 @@ import Orders from "./Orders";
 import FullProduct from "./Product/FullProduct/FullProduct";
 function App() {
   const [state,dispatch]=useStateValue();
+    function Parent(){
+        return (
+            <div>
+                <Route path = '/' component={Header}/>
+                <Route path = '/fullProduct' component={FullProduct}/>
+
+            </div>
+        )
+    }
   useEffect(()=>{
   auth.onAuthStateChanged(authUser =>{
     console.log('The user is',authUser);
@@ -31,8 +42,7 @@ function App() {
   },[])
   return (
 <Router>
-<div className="App">    
- 
+<div className="App">
      <Switch>
   <Route path="/login">    
  <Login/>
@@ -41,10 +51,15 @@ function App() {
      <Header/>    
     <Checkout/>
    </Route>
-       <Route path="/fullProduct">
-         <Header/>
-         <FullProduct/>
-       </Route>
+
+         <Route path="/fullProduct" component={Parent}/>
+
+
+
+
+
+
+
        <Route path="/orders">
          <Header/>
          <Orders/>

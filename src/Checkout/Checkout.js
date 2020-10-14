@@ -3,16 +3,13 @@ import React,{forwardRef} from 'react'
 import CheckoutProduct from './CheckoutProduct/CheckoutProduct';
  import { useStateValue } from '../StateProvider';
  import FlipMove from 'react-flip-move';
-
 import Subtotal from './Subtotal/Subtotal'
-function Checkout() {
+function Checkout(props) {
     const [{basket,user},dispatch] = useStateValue();  
-
-const FunctionalArticle = forwardRef((props, ref) =>{ 
-    console.log(props.id);
+console.log(basket)
+const FunctionalArticle = forwardRef((props, ref) =>{
     return (
     <div ref={ref}>
-   
     <CheckoutProduct
                     id={props.id}
                     title={props.title}
@@ -34,6 +31,7 @@ const FunctionalArticle = forwardRef((props, ref) =>{
                 </h2>
                 <FlipMove>
                {basket.map(item=>{
+                   console.log(item)
                    return (
                   <FunctionalArticle key={item.id} {...item}/>
                    )
