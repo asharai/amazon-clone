@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState,useCallback} from 'react';
 import './FullProduct.css';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import axios from "../../axios-orders";
@@ -12,16 +12,19 @@ const FullProduct = (props) => {
         dispatch ({
             type:'ADD_TO_BASKET',
             item:{
-                id:id,
+                id:product.id,
                 title:product.title,
                 image:parseProps("images")[0],
                 price:product.price,
-                rating:product.rating
+                rating:product.rating,
+                count:1,
+                startPrice:product.price
             }
         })
     }
+
     console.log(basket)
-  useEffect(()=>{
+    useEffect(()=>{
         axios.get('/fullItem.json')
             .then(res=>{
                let id = props.location.pathname[props.location.pathname.length -1]

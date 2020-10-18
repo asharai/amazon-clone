@@ -5,17 +5,22 @@ import CheckoutProduct from './CheckoutProduct/CheckoutProduct';
  import FlipMove from 'react-flip-move';
 import Subtotal from './Subtotal/Subtotal'
 function Checkout(props) {
-    const [{basket,user},dispatch] = useStateValue();  
+    const [{basket,user},dispatch] = useStateValue();
+
 console.log(basket)
 const FunctionalArticle = forwardRef((props, ref) =>{
     return (
     <div ref={ref}>
+
     <CheckoutProduct
                     id={props.id}
                     title={props.title}
                     image={props.image}
                     price={props.price}
                     rating={props.rating}
+                    count={props.count}
+                    startPrice={props.startPrice}
+                    disable = {false}
                     />
     </div> )
   });

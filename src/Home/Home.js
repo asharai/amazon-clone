@@ -29,6 +29,7 @@ const  Home=()=> {
                  price={item.price}
                  rating={item.rating}
                  image={item.image}
+
              />
 
          )

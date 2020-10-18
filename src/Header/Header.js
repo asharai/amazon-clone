@@ -47,7 +47,9 @@ import { auth } from '../firebase';
                  <div className="header__optionBasket">                     
                      <ShoppingBasketIcon/>
                      <span className="header__optionLineTwo header__basketCount">
-                    {basket?.length}
+                    {basket.length>0 ? basket.reduce((acc,cur)=>{
+                        return acc + cur.count
+                    },0): 0}
                      </span>
                  </div>
                  </Link>
