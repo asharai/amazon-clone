@@ -33,6 +33,7 @@ const Orders = () => {
                                             image={product.image}
                                             price={product.price}
                                             rating={product.rating}
+                                            count={product.count}
                                         />
                                     )
                                 })}

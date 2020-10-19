@@ -11,7 +11,9 @@ function Payment() {
         <div className='payment'>
             <div className='payment__container'>
                 <h1>Checkout (<Link to ='/checkout'>
-                    {basket.length} items
+                    {basket.length>0 ? basket.reduce((acc,cur)=>{
+                        return acc + cur.count
+                    },0): 0} items
                 </Link>)</h1>
                <div className="payment__section">
                 <div className="payment__title">
@@ -37,6 +39,7 @@ function Payment() {
                     price={item.price}
                     rating={item.rating}
                     count={item.count}
+                        startPrice={item.startPrice}
                         disable={true}/>
                     })}
                 </div>

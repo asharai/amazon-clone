@@ -20,7 +20,7 @@
 .fullProduct__images > ul > li{
     height: 52px;
     box-sizing: border-box;
-   border:1px solid #fff;
+   border:2px solid #fff;
 }
 .fullProduct__images > ul > li > img{
     height: 40px;
@@ -63,4 +63,71 @@ border-color: orangered;
 .fullProduct__purchaseBtn > span{
 
     flex-grow: 1;
+}
+.open{
+    display: block;
+
+}
+.close{
+    display: none;
+}
+.modal__content{
+    margin-left: 2.5%;
+    margin-top:3.5%;
+    position: relative;
+    opacity: 1;
+    z-index: 1000;
+    width:95%;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-evenly;
+    height: 80%;
+    padding-top:40px;
+    padding-bottom:40px;
+    box-sizing: border-box;
+}
+.modal__description{
+    height: 400px;
+    width: 30%;
+    color:#333;
+    flex:0.3;
+
+
+
+}
+.modal__description > ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    flex-wrap: wrap;
+    width: 350px;
+}
+.modal__close{
+    color:#333;
+    text-decoration: none;
+    position: absolute;
+    right: 0;
+    top:0;
+    padding: 10px 15px;
+}
+.modal__close:hover{
+    color: red;
+}
+
+.modal__mainImage{
+    height: 100%;
+    width: 800px;
+    padding: 0;
+    margin: 0;
+    object-fit: contain;
+}
+.modal__descriptionImage{
+    height: 60px;
+    width:60px;
+    border:2px solid lightgray;
+    margin-left: 15px;
+
+}
+.active{
+    border-color: #ff8000;
 }

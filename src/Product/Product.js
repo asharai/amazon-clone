@@ -4,7 +4,7 @@ import { useStateValue } from '../StateProvider';
 
 import {Link, NavLink} from "react-router-dom";
 
-function Product({id,title,image,price,rating}) {
+function Product({id,title,image,price,rating,count}) {
     const [{basket},dispatch] = useStateValue();
     return (
         <div className="product">
@@ -26,7 +26,7 @@ function Product({id,title,image,price,rating}) {
                 </div>
             </div>
             <img src={image} alt="" className="product__img"/>
-
+                {count > 1 ? <p>count: {count}</p> : null}
             </NavLink>
         </div>
     )

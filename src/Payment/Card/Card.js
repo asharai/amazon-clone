@@ -32,7 +32,8 @@ const Card = () => {
           items:basket,
             fullPrice:subtotal
         }).then((res)=>console.log(res))
-            .catch((err)=>console.log(err))
+            .catch((err)=>console.log(err));
+
         }
     return (
         <div className="card">
@@ -88,7 +89,7 @@ const Card = () => {
                     <input className="card__infoInput" maxLength={3} type="text" onChange={(e)=>setCvv(e.target.value)}/></label>
                 </div>
                 <div className="card__pay">
-                    <p>Payment Amount: <span> {subtotal}$</span></p>
+                    <p>Payment Amount: <span> {subtotal.toFixed(2)}$</span></p>
                     <a href="#" onClick={makeOrder}>PAY</a>
                 </div>
             </form>
