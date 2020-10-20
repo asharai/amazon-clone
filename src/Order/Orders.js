@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import axios from './axios-orders'
-import Product from "./Product/Product";
+import axios from '../axios-orders'
+import Product from '../Product/Product'
 import './Orders.css';
 const Orders = () => {
     const [orders=[],setOrders]= useState();
     useEffect(()=>{
-        axios.get('/orders.json').then(res=>{
+        axios.get('/Order.json').then(res=>{
             const  fetchedOrders = [];
             for(let key in res.data){
                 fetchedOrders.push({...res.data[key],id:key})

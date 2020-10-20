@@ -1,11 +1,13 @@
 export const initialState ={
+    fullItem:{},
     basket:[],
     cardInfo:{
         pan:'',
         expMonth:'',
         expYear:'',
         cvv:''
-    }
+    },
+
 };
 
 export const getBasketTotal = (basket) =>{
@@ -67,6 +69,24 @@ export const reducer = (state,action)=>{
             return{
                 ...state,
                 basket: newBasket
+            }
+        case 'SET_FULL_ITEM':
+            return{
+                ...state,
+            fullItem:{
+                id:action.fullItem.id,
+                title:action.fullItem.title,
+                image:action.fullItem.image,
+                price:action.fullItem.price,
+                rating:action.fullItem.rating,
+                count:1,
+                startPrice:action.fullItem.price
+            }
+            }
+        case 'CLEAR_BASKET':
+            return{
+                ...state,
+                basket: []
             }
         case '':
             return{}

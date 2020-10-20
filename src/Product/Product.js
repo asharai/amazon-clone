@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import './Product.css'
 import { useStateValue } from '../StateProvider';
 
@@ -6,8 +6,11 @@ import {Link, NavLink} from "react-router-dom";
 
 function Product({id,title,image,price,rating,count}) {
     const [{basket},dispatch] = useStateValue();
+
     return (
-        <div className="product">
+        <div className="product" onClick={()=>{
+
+        }}>
             <NavLink to={`fullProduct/${id}`} style={{
                 textDecoration:'none',
                 color:'black'
@@ -26,8 +29,10 @@ function Product({id,title,image,price,rating,count}) {
                 </div>
             </div>
             <img src={image} alt="" className="product__img"/>
+
                 {count > 1 ? <p>count: {count}</p> : null}
             </NavLink>
+
         </div>
     )
 }

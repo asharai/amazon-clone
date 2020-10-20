@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './Card.css'
 import {useStateValue} from "../../StateProvider";
 import axios from '../../axios-orders';
+import {Redirect} from "react-router";
 const Card = () => {
     const [pan='',setPan] =useState();
     const [cardholder='',setCardholder] =useState();
@@ -28,47 +29,53 @@ const Card = () => {
             return str
             }
         const makeOrder = ()=>{
-        axios.post('/orders.json',{
+        axios.post('/Order.json',{
           items:basket,
             fullPrice:subtotal
-        }).then((res)=>console.log(res))
+        }).then((res)=>{
+            dispatch({
+                type:'CLEAR_BASKET'
+            })
+        })
             .catch((err)=>console.log(err));
 
         }
-    return (
-        <div className="card">
+    let paymentBlock =<Redirect to={'/'}/>
+    if(basket.length>0){
+        paymentBlock = (<div className="card">
+
             <div className="card__block">
                 <div className="card__blockLogo">
                     {paymentSystem}
                 </div>
 
-                    <div className="card__blockChip"
-                      >
-                    </div>
+                <div className="card__blockChip"
+                >
+                </div>
 
                 <p className='card__blockPan'>
-                {onChangePan(pan)}
+                    {onChangePan(pan)}
                 </p>
-                    <ul className="card__blockInfo">
-                        <li>
-                            <span> CARD HOLDER</span>
-                            <p>{cardholder}</p>
-                        </li>
-                        <li>
-                            <span> EXPIES</span>
-                            <p>{month}
+                <ul className="card__blockInfo">
+                    <li>
+                        <span> CARD HOLDER</span>
+                        <p>{cardholder}</p>
+                    </li>
+                    <li>
+                        <span> EXPIES</span>
+                        <p>{month}
                             {year.length > 0 || month.length > 0 ?
-                            "/":null}
+                                "/":null}
                             {year}</p>
-                        </li>
+                    </li>
 
-                        <li>
-                            <span>CVV</span>
+                    <li>
+                        <span>CVV</span>
 
-                            <p>{cvv}</p>
-                        </li>
+                        <p>{cvv}</p>
+                    </li>
 
-                    </ul>
+                </ul>
             </div>
             <form className="card__info">
                 <label htmlFor="">Cardholder Name</label>
@@ -77,16 +84,16 @@ const Card = () => {
                 <input className="card__infoInput" type="text" maxLength={16} value={pan} onChange={(e)=>setPan(e.target.value)}/>
                 <div className="card__InfoParams">
                     <label htmlFor="">
-                    <span>Exp Month</span>
-                    <input className="card__infoInput" maxLength={2} type="text" onChange={(e)=>setMonth(e.target.value)}/>
+                        <span>Exp Month</span>
+                        <input className="card__infoInput" maxLength={2} type="text" onChange={(e)=>setMonth(e.target.value)}/>
                     </label>
                     <label htmlFor="">
                         <span>Exp Year</span>
-                    <input className="card__infoInput" maxLength={2} type="text" onChange={(e)=>setYear(e.target.value)}/>
+                        <input className="card__infoInput" maxLength={2} type="text" onChange={(e)=>setYear(e.target.value)}/>
                     </label>
                     <label htmlFor="">
                         <span>CVV</span>
-                    <input className="card__infoInput" maxLength={3} type="text" onChange={(e)=>setCvv(e.target.value)}/></label>
+                        <input className="card__infoInput" maxLength={3} type="text" onChange={(e)=>setCvv(e.target.value)}/></label>
                 </div>
                 <div className="card__pay">
                     <p>Payment Amount: <span> {subtotal.toFixed(2)}$</span></p>
@@ -95,8 +102,9 @@ const Card = () => {
             </form>
 
 
-        </div>
-    );
+        </div>)
+    }
+    return paymentBlock
 };
 
 export default Card;

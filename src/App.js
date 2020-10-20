@@ -6,11 +6,11 @@ import './App.css';
 import Header from './Header/Header';
 import Home from './Home/Home';
 import Checkout from './Checkout/Checkout';
-import Login from './Login';
+import Login from './Login/Login';
 import { auth } from './firebase';
 import { useStateValue } from './StateProvider';
 import Payment from './Payment/Payment';
-import Orders from "./Orders";
+import Orders from "./Order/Orders";
 import FullProduct from "./Product/FullProduct/FullProduct";
 function App() {
   const [state,dispatch]=useStateValue();

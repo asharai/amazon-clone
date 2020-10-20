@@ -7,6 +7,7 @@ import { useStateValue } from '../StateProvider';
 import { auth } from '../firebase';
  const Header=()=> {
      const [{basket,user},dispatch]=useStateValue();
+
      const handleAuthentication = () =>{
         if(user){
             auth.signOut();
@@ -47,7 +48,7 @@ import { auth } from '../firebase';
                  <div className="header__optionBasket">                     
                      <ShoppingBasketIcon/>
                      <span className="header__optionLineTwo header__basketCount">
-                    {basket.length>0 ? basket.reduce((acc,cur)=>{
+                    {basket?.length>0 ? basket?.reduce((acc,cur)=>{
                         return acc + cur.count
                     },0): 0}
                      </span>
