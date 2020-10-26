@@ -3,17 +3,25 @@ import './Card.css'
 import {useStateValue} from "../../StateProvider";
 import axios from '../../axios-orders';
 import {Redirect} from "react-router";
+import ModalUI from '@material-ui/core/Modal'
+import Fade from "@material-ui/core/Fade";
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import {getBasketTotal} from '../../reducer';
 const Card = () => {
     const [pan='',setPan] =useState();
     const [cardholder='',setCardholder] =useState();
     const [month='',setMonth] =useState();
     const [year='',setYear] =useState();
     const [cvv='',setCvv] =useState();
-    const [{basket,user},dispatch]=useStateValue();
-    const subtotal = basket.reduce((acc,cur)=>acc+cur.price,0);
+    const [{basket},dispatch]=useStateValue();
+    const [successOrder = false,setSuccessOrder] = useState();
+
     let paymentSystem = "Payment System";
     if(pan){
         paymentSystem = pan[0]=='4'? <i className="card__blockLogoIcon fab fa-cc-visa"></i> : <i className="card__blockLogoIcon fab fa-cc-mastercard"></i>
+    }
+    const toggleModal = ()=>{
+        setSuccessOrder(!successOrder)
     }
     const onChangePan = (pan)=>{
         let str = pan.split('');
@@ -31,17 +39,35 @@ const Card = () => {
         const makeOrder = ()=>{
         axios.post('/Order.json',{
           items:basket,
-            fullPrice:subtotal
+            fullPrice:getBasketTotal(basket)
         }).then((res)=>{
-            dispatch({
-                type:'CLEAR_BASKET'
-            })
+            setSuccessOrder(true);
+           setTimeout(()=>{
+               setSuccessOrder(false)
+               dispatch({
+                   type:'CLEAR_BASKET'
+               })
+           },1500)
         })
             .catch((err)=>console.log(err));
 
         }
     let paymentBlock =<Redirect to={'/'}/>
-    if(basket.length>0){
+    if(successOrder){
+        paymentBlock = (
+            <ModalUI open={successOrder} closeAfterTransition onClose={toggleModal}>
+                <Fade  in={successOrder}>
+                   <div className="modal">
+                    <div className="modal__main">
+                        <CheckCircleIcon style={{ fontSize: 100,color:"green" }}/>
+                    <h1>Thank you for order!</h1>
+                    </div>
+                   </div>
+                </Fade>
+            </ModalUI>
+        )
+    }
+   else if(basket.length>0){
         paymentBlock = (<div className="card">
 
             <div className="card__block">
@@ -96,7 +122,7 @@ const Card = () => {
                         <input className="card__infoInput" maxLength={3} type="text" onChange={(e)=>setCvv(e.target.value)}/></label>
                 </div>
                 <div className="card__pay">
-                    <p>Payment Amount: <span> {subtotal.toFixed(2)}$</span></p>
+                    <p>Payment Amount: <span> {getBasketTotal(basket)}$</span></p>
                     <a href="#" onClick={makeOrder}>PAY</a>
                 </div>
             </form>

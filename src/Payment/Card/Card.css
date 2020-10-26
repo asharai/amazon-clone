@@ -125,4 +125,21 @@ border:none;
 }
 .card__pay > p > span{
     color:#F5505F;
+
+}
+.modal{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal__main{
+    background-color: #fff;
+    width:40%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
 }

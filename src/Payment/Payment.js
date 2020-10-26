@@ -33,6 +33,7 @@ function Payment() {
                 <div className="payment__items">
                     {basket.map(item=>{
                         return <CheckoutProduct
+                            key={item.id}
                         id={item.id}
                     title={item.title}
                     image={item.image}

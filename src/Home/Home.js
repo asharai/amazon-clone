@@ -10,7 +10,6 @@ const  Home=()=> {
   useEffect(()=>{
     axios.get('/mainItem.json')
         .then(res=>{
-          console.log('hel')
           const  fetchedProducts = [];
           for(let key in res.data){
             fetchedProducts.push({...res.data[key],id:key})
@@ -24,6 +23,7 @@ const  Home=()=> {
        products.slice(a,b).map(item=>{
          return(
              <Product
+                 key={item.id}
                  id={item.id}
                  title={item.title}
                  price={item.price}

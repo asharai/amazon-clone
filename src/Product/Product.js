@@ -1,20 +1,18 @@
-import React, {useEffect, useState} from 'react'
-import './Product.css'
-import { useStateValue } from '../StateProvider';
+import React from 'react'
+import './Product.css';
+import {NavLink} from "react-router-dom";
 
-import {Link, NavLink} from "react-router-dom";
+const Product=({id,title,image,price,rating,count})=>{
 
-function Product({id,title,image,price,rating,count}) {
-    const [{basket},dispatch] = useStateValue();
 
     return (
-        <div className="product" onClick={()=>{
-
-        }}>
+        <div className="product" key={id}>
             <NavLink to={`fullProduct/${id}`} style={{
                 textDecoration:'none',
                 color:'black'
-            }}>
+            }}
+
+           >
             <div className="product__info">
                 <p>{title}</p>
                 <p className="product_price">
@@ -23,7 +21,7 @@ function Product({id,title,image,price,rating,count}) {
                 </p>
                 <div className="product__rating">
                     {Array(rating).fill().map((_,i)=>
-                        <p>⭐</p> 
+                        <p key={i}>⭐</p>
                     )}
                                                    
                 </div>

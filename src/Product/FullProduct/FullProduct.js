@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import './FullProduct.css';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import axios from "../../axios-orders";
+import {CancelToken} from "axios";
 import {useStateValue} from "../../StateProvider";
 import Spinner from "../../Spinner/Spinner";
 import ModalUI from '@material-ui/core/Modal';
@@ -21,7 +22,7 @@ const FullProduct = (props) => {
                 id:product.id,
                 title:product.title,
                 image:parseProps("images")[0],
-                price:product.price,
+                price:product.price.toFixed(2),
                 rating:product.rating,
                 count:1,
                 startPrice:product.price
@@ -33,8 +34,10 @@ const FullProduct = (props) => {
         setOpenModal(!openModal)
     }
     useEffect(()=>{
+        const CancelTokeN = CancelToken;
+        const source = CancelTokeN.source();
         const fetchData = async ()=>{
-            const result = await axios.get('/fullItem.json')
+            const result = await axios.get('/fullItem.json', { cancelToken: source.token })
                 .then(res=>{
                     let id = props.location.pathname[props.location.pathname.length -1];
                     setProduct(res.data[id]);
@@ -42,6 +45,9 @@ const FullProduct = (props) => {
                 }).catch(error=>console.log(error))
         }
         fetchData();
+        return () => {
+            source.cancel();
+        };
     },[])
 
     const parseProps =(prop)=>{
@@ -93,7 +99,7 @@ const FullProduct = (props) => {
                     <h2 className="fullProduct__title">{product.title}</h2>
                     <h4 className="fullProduct__brand"></h4>
                     <p className="fullProduct__rating">{Array(product.rating).fill().map((_,i)=>
-                        <span>⭐</span>
+                        <span key={i}>⭐</span>
                     )}</p>
                     <ul className="fullProduct__params">
 
@@ -121,7 +127,8 @@ const FullProduct = (props) => {
         )
 
     }
-    return content
+    return content;
+
 };
 
 

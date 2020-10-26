@@ -25,7 +25,7 @@ function App() {
     }
   useEffect(()=>{
   auth.onAuthStateChanged(authUser =>{
-    console.log('The user is',authUser);
+
     if(authUser){
       dispatch({
         type:'SET_USER',
@@ -53,13 +53,6 @@ function App() {
    </Route>
 
          <Route path="/fullProduct" component={Parent}/>
-
-
-
-
-
-
-
        <Route path="/orders">
          <Header/>
          <Orders/>
@@ -70,7 +63,7 @@ function App() {
    </Route>
    <Route path="/">  
    <Header/>    
-    <Home/ >
+    <Home/>
    </Route>
      </Switch>
     </div>
